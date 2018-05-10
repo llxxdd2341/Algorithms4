@@ -1,0 +1,60 @@
+package test11;
+
+import java.util.Iterator;
+
+public class Dequee<Item> implements Iterable<Item> {
+	private Node<Item> first;
+	private Node<Item> last;
+	private int size;
+	private static class Node<Item>{
+		private Item item;
+		Node<Item> left;
+		Node<Item> right;
+		public String toString() {
+			return (String)item;
+		}
+	}
+	public Dequee() {
+		first = null;
+		last = null;
+		size = 0;
+	}
+	private boolean isEmpty(){
+		return size == 0 ;
+	}
+	private int size() {
+		return size;
+	}
+	public void pushLeft(Item item) {
+		Node<Item> oldfirst = first;
+		first = new Node<Item>();
+		first.item = item;
+		first.right = oldfirst;
+		size++;
+	}
+	public void pushRight(Item item) {
+		Node<Item> oldLast = last;
+		last = new Node<Item>();
+		last.item = item;
+		last.left = oldLast;
+		size++;
+	}
+	public Item popLeft() {
+		Node<Item> oldfirst = first;
+		first = first.right;
+		size--;
+		return oldfirst.item;
+	}
+	public Item popRight() {
+		Node<Item> oldlast = last;
+		last = last.left;
+		size--;
+		return oldlast.item;
+	
+	}
+	@Override
+	public Iterator<Item> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
