@@ -1,0 +1,37 @@
+package test11;
+
+import java.util.Scanner;
+
+public class Exc3_9 {
+	public static void main (String args[]) {
+		Stack<String> dataStack = new Stack<String>();
+		Stack<String> oprStack = new Stack<String>();
+		Scanner scan = new Scanner(System.in);
+		//String str = scan.nextLine();
+		String str = "1+2)*3-4)*5-6)))";
+		scan.close();
+		String[] str1 = str.split("");
+		for(int i = 0;i<str1.length;i++) {
+			if(str1[i].equals("+"))
+				oprStack.push(str1[i]);
+			else if(str1[i].equals("-"))
+				oprStack.push(str1[i]);
+			else if(str1[i].equals("*"))
+				oprStack.push(str1[i]);
+			else if(str1[i].equals("/"))
+				oprStack.push(str1[i]);
+			else if(str1[i].equals(")"))
+				{
+					String opr = oprStack.pop();
+					String data = dataStack.pop();
+					String data1 = dataStack.pop();
+					//System.out.println("("+data1+opr+data+")");	
+					dataStack.push("("+data1+opr+data+")");
+				}
+			else  dataStack.push(str1[i]);
+		}
+		for(int i = 0;i<=dataStack.size();i++) {
+			System.out.print(dataStack.pop());	
+		}
+	}
+}
