@@ -1,0 +1,43 @@
+package test11;
+
+import java.util.Scanner;
+
+public class Exc3_10 {
+	public static void main(String args[]) {
+		Stack<String> dataStack = new Stack<String>();
+		Stack<String> oprStack = new Stack<String>();
+		Scanner scan = new Scanner(System.in);
+		//String str = scan.nextLine();
+		String str = "2*3/(2-1)+3*(4-1)";
+		scan.close();
+		String[] str1 = str.split("");
+			for(int i = 0;i<str1.length;i++) {
+				//System.out.print(str1[i]);
+				if(str1[i].equals("("));
+				else if(str1[i].equals("+"))
+					oprStack.push(str1[i]);
+				else if(str1[i].equals("-"))
+					oprStack.push(str1[i]);
+				else if(str1[i].equals("*"))
+					oprStack.push(str1[i]);
+				else if(str1[i].equals("/"))
+					oprStack.push(str1[i]);
+				else if(str1[i].equals(")"))
+					dataStack.push(oprStack.pop());
+				else {//System.out.print(str1[i]);
+					dataStack.push(str1[i]);
+					//System.out.println(dataStack.size());
+					}
+			}
+			int size = dataStack.size();
+			int size1 = oprStack.size();
+			String out = new String();
+			for(int i = 0;i<size;i++) {
+				out = dataStack.pop()+out	;
+			}
+			System.out.print(out);
+			for(int i = 0;i<size1;i++) {
+				System.out.print(oprStack.pop());	
+			}
+	}
+}
