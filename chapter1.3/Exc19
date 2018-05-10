@@ -1,0 +1,40 @@
+package test11;
+
+public class Exc3_19 {
+	
+	public static void main(String args[]) {
+		Node<String> first = new Node<String>();
+		Node<String> second = new Node<String>();
+		Node<String> third = new Node<String>();
+		Node<String> last = new Node<String>();
+		first.next = second;
+		second.next = third;
+		third.next = last;
+		last.next = null;
+		first.item = "lm";
+		second.item = "syh";
+		third.item = "zyw";
+		last.item = "cy";
+		delLastNode(first);
+		printNode(first);
+		
+	}
+	public static class Node<Item> {
+		private Item item;
+		private Node next;
+		public String toString() {
+			return (String)item;
+		}
+	}
+	public static void printNode(Node node) {
+		if(node!=null) {
+			System.out.println(node);
+			printNode(node.next);
+		}
+	}
+	public static void delLastNode(Node node) {
+		if (node.next.next==null)
+			node.next=null;
+		else delLastNode(node.next);
+	}
+}
