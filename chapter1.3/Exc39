@@ -1,0 +1,36 @@
+package test11;
+
+public class RingBuffer<Item> {
+	private Item[] item;
+	private int first,last;
+	public boolean isFull() {
+			return (last+1)%item.length==first%item.length;
+	}
+	public boolean isEmpty() {
+		return first == last;
+	}
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
+	public void put(Item in) {
+		while(isFull());
+		item[(last++)%item.length] = in;
+	}
+	public Item get() {
+		while(isEmpty()); 
+		return item[(first++)%item.length]; 	
+	}
+	public RingBuffer(int N) {
+		item = (Item[])new Object[N];
+		first = last = 0;
+	}
+}
